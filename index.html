@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATRIX - The Operating System for AI Agents & Digital Empires</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #0a0e27;
+            --secondary-bg: #0f1229;
+            --accent-neon: #00ff00;
+            --accent-purple: #9d4edd;
+            --accent-cyan: #00d9ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b8d4;
+            --border-color: #1a1f3a;
+            --card-bg: #111627;
+            --tier-highlight: #9d4edd;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--accent-neon);
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: var(--accent-neon);
+        }
+
+        .cta-nav {
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .cta-nav:hover {
+            background: #00dd00;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 2rem 100px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--accent-neon);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+        }
+
+        .btn-primary:hover {
+            background: #00dd00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-neon);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .matrix-cube {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2) 0%, rgba(0, 217, 255, 0.2) 100%);
+            border: 2px solid var(--tier-highlight);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 40px rgba(157, 78, 221, 0.4), inset 0 0 40px rgba(157, 78, 221, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .matrix-cube::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 255, 0, 0.3) 0%, transparent 50%);
+            border-radius: 10px;
+        }
+
+        .cube-text {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .cube-text p {
+            font-size: 0.9rem;
+            color: var(--accent-neon);
+            margin: 0;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(157, 78, 221, 0.05) 100%);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: rgba(15, 18, 41, 0.5);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            background: rgba(15, 18, 41, 0.8);
+            border-color: var(--accent-neon);
+            transform: translateY(-5px);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-neon);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .pricing-header h2 .highlight {
+            color: var(--accent-neon);
+        }
+
+        .pricing-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: var(--border-color);
+            border-radius: 15px;
+            cursor: pointer;
+            border: 1px solid var(--accent-neon);
+        }
+
+        .toggle-switch.yearly::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: var(--accent-neon);
+            border-radius: 13px;
+            top: 2px;
+            right: 2px;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            position: relative;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent-neon);
+            background: rgba(15, 18, 41, 0.9);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--tier-highlight);
+            background: rgba(157, 78, 221, 0.1);
+            transform: scaleY(1.05);
+        }
+
+        .pricing-card.featured:hover {
+            background: rgba(157, 78, 221, 0.15);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--tier-highlight);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--accent-neon);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-duration {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(176, 184, 212, 0.1);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--accent-neon);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .pricing-button {
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .pricing-button:hover {
+            background: #00dd00;
+            transform: translateY(-2px);
+        }
+
+        .pricing-card.featured .pricing-button {
+            background: var(--tier-highlight);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(157, 78, 221, 0.05) 100%);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .services-header h2 .highlight {
+            color: var(--accent-neon);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            background: rgba(15, 18, 41, 0.6);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            background: rgba(15, 18, 41, 0.9);
+            border-color: var(--accent-neon);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(157, 78, 221, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Trust Section */
+        .trust {
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trust-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trust-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .trust-header h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .trust-header h2 .highlight {
+            color: var(--accent-neon);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .trust-card {
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            background: rgba(15, 18, 41, 0.5);
+            transition: all 0.3s;
+        }
+
+        .trust-card:hover {
+            background: rgba(15, 18, 41, 0.8);
+            border-color: var(--tier-highlight);
+        }
+
+        .trust-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 6rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .faq-header h2 .highlight {
+            color: var(--accent-neon);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent-neon);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--accent-neon);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            margin-top: 1rem;
+            line-height: 1.8;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .cta-section-btn {
+            background: var(--primary-bg);
+            color: var(--accent-neon);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-section-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(10, 14, 39, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-neon);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-neon);
+        }
+
+        .footer-newsletter {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .footer-newsletter input {
+            flex: 1;
+            padding: 0.75rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .footer-newsletter button {
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .footer-newsletter button:hover {
+            background: #00dd00;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-neon);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-neon);
+            color: var(--primary-bg);
+            border-color: var(--accent-neon);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 120px 1.5rem 80px;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-visual {
+                height: 300px;
+            }
+
+            .matrix-cube {
+                width: 250px;
+                height: 250px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scaleY(1);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-header h2,
+            .services-header h2,
+            .faq-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 100px 1rem 60px;
+                margin-top: 80px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .pricing-price {
+                font-size: 1.5rem;
+            }
+
+            .service-icon {
+                font-size: 2rem;
+            }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">MATRIX</div>
+        <ul>
+            <li><a href="#platform">Platform</a></li>
+            <li><a href="#solutions">Solutions</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="cta-nav">LAUNCH MATRIX →</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div>
+                <h1>MATRIX: The <span class="highlight">Operating System</span> for AI Agents & Digital Empires</h1>
+                <p>Discover the ultimate operating system designed to orchestrate AI agents, unlock next-gen automation, and scale digital assets into highly profitable business empires. Covering 10 distinct AI services.</p>
+                <div class="hero-buttons">
+                    <a href="#pricing" class="btn btn-primary">Explore Ecosystem →</a>
+                    <a href="#pricing" class="btn btn-secondary">View Pricing →</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="matrix-cube">
+                    <div class="cube-text">
+                        <p>MATRIX CORE</p>
+                        <p style="font-size: 0.8rem; margin-top: 0.5rem;">Intelligence. Automation. Scale.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-value">$200B+</div>
+                <div class="stat-label">Projected AI Market Value by 2027</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">10x</div>
+                <div class="stat-label">Faster Deployment for Autonomous Digital Systems</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">$1M+</div>
+                <div class="stat-label">Potential ARR Unlocked via Optimized Agent Networks</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="pricing-header">
+            <h2>8 LEVELS. <span class="highlight">INFINITE POSSIBILITIES.</span></h2>
+            <div class="pricing-toggle">
+                <span>MONTHLY</span>
+                <div class="toggle-switch"></div>
+                <span>YEARLY</span>
+            </div>
+        </div>
+
+        <div class="pricing-grid">
+            <!-- Tier 1 -->
+            <div class="pricing-card">
+                <div class="pricing-badge">🌱 Starter</div>
+                <h3>Junior Coder</h3>
+                <div class="pricing-subtitle">Entry-level AI automation</div>
+                <div class="pricing-price">$24.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>5,000 API Requests / mo</li>
+                    <li>Basic AI Agent Integration</li>
+                    <li>Standard Response Time</li>
+                    <li>Access to 2 AI Services</li>
+                    <li>Email Support</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="pricing-card">
+                <div class="pricing-badge">🚀 Growth</div>
+                <h3>Mid Coder</h3>
+                <div class="pricing-subtitle">Scaling operations</div>
+                <div class="pricing-price">$49.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>20,000 API Requests / mo</li>
+                    <li>Advanced Multi-Agent Workflows</li>
+                    <li>Priority Processing</li>
+                    <li>Access to 5 AI Services</li>
+                    <li>Discord & Email Support</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="pricing-card">
+                <div class="pricing-badge">🔥 Professional</div>
+                <h3>Senior Coder</h3>
+                <div class="pricing-subtitle">Full AI arsenal</div>
+                <div class="pricing-price">$99.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>50,000 API Requests / mo</li>
+                    <li>Custom Agent Scripting</li>
+                    <li>Ultra-Low Latency Pipelines</li>
+                    <li>Access to All 10 AI Services</li>
+                    <li>24/7 Priority Support</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 4 -->
+            <div class="pricing-card">
+                <div class="pricing-badge">👥 Collaboration</div>
+                <h3>Team Lead</h3>
+                <div class="pricing-subtitle">Team coordination</div>
+                <div class="pricing-price">$249.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>120,000 API Requests / mo</li>
+                    <li>Shared Workspace for 5 Team Members</li>
+                    <li>Centralized Knowledge Bases</li>
+                    <li>Advanced Compliance</li>
+                    <li>Dedicated Representative</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 5 -->
+            <div class="pricing-card">
+                <div class="pricing-badge">🏛️ Scale</div>
+                <h3>Architect</h3>
+                <div class="pricing-subtitle">Enterprise solutions</div>
+                <div class="pricing-price">$499.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>400,000 API Requests / mo</li>
+                    <li>Enterprise-Grade Execution Layers</li>
+                    <li>Fine-Tuned Model Pipelines</li>
+                    <li>Unlimited Agent Deployments</li>
+                    <li>1-on-1 Architecture Consultations</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 6 -->
+            <div class="pricing-card">
+                <div class="pricing-badge">👑 Elite</div>
+                <h3>Principal</h3>
+                <div class="pricing-subtitle">Premium excellence</div>
+                <div class="pricing-price">$999.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>1,000,000 API Requests / mo</li>
+                    <li>Custom Hardware Acceleration</li>
+                    <li>Private LLM Gateway Sharding</li>
+                    <li>White-Label Platform Rights</li>
+                    <li>Direct Engineer Slack Channel</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 7 -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">🌌 Pinnacle</div>
+                <h3>Distinguished</h3>
+                <div class="pricing-subtitle">Ultimate power</div>
+                <div class="pricing-price">$2,499.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>2,500,000 API Requests / mo</li>
+                    <li>Bespoke AI Strategy & R&D</li>
+                    <li>Zero-Rate Data Retention Privacy</li>
+                    <li>Full-Stack Agent Auditing</li>
+                    <li>Executive Support SLAs</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">Subscribe</a>
+            </div>
+
+            <!-- Tier 8 -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">🌟 Ultimate</div>
+                <h3>Enterprise</h3>
+                <div class="pricing-subtitle">Unlimited scale</div>
+                <div class="pricing-price">$4,999.99</div>
+                <div class="pricing-duration">/ Monthly</div>
+                <ul class="pricing-features">
+                    <li>Up to 6,000,000 API Requests</li>
+                    <li>Custom On-Premises Isolation</li>
+                    <li>Dedicated GPU Infrastructure</li>
+                    <li>Continuous Co-Development Teams</li>
+                    <li>Immediate Response Board SLA</li>
+                </ul>
+                <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="pricing-button">🎯 Go Enterprise</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="services-header">
+            <h2>10 AI SERVICES. <span class="highlight">ONE POWERFUL ECOSYSTEM.</span></h2>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤝</div>
+                <h3>AI Freelancing Hub</h3>
+                <p>Jumpstart digital client acquisition with fully automated service matching frameworks.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎙️</div>
+                <h3>Voice & Conversational AI</h3>
+                <p>High-fidelity interactive audio pipelines executing real-time brand representation.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>Virtual Assistants</h3>
+                <p>Smart context-aware background agents managing dynamic calendar and admin workloads.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>Customer Chatbots</h3>
+                <p>Next-generation semantic retrieval models addressing inquiries instantly with human parity.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Lead Generation Engines</h3>
+                <p>Autonomous data parsing scripts scrubbing the web to deliver verified warm business prospects.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Social Media Content</h3>
+                <p>Continuous generation of contextual brand messaging designed to organically capture viral impressions.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">✍️</div>
+                <h3>Copywriting Pipelines</h3>
+                <p>Advanced conversion-focused language generation specialized for long-form landing optimization.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🔒</div>
+                <h3>Cyber Security Guardrails</h3>
+                <p>Anomaly detection arrays keeping agent actions safe, encrypted, and isolated across servers.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🕸️</div>
+                <h3>Autonomous Agent Networks</h3>
+                <p>Scaled multi-agent hives performing parallel data operations completely unsupervised.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Venture Studio Automation</h3>
+                <p>Systematic infrastructure designed to launch, refine, track, and flip digital SaaS operations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="trust-container">
+            <div class="trust-header">
+                <h2>TRUSTED BY <span class="highlight">VISIONARIES.</span></h2>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <p>"99.9% Core Pipeline Uptime orchestrated via Matrix OS."</p>
+                </div>
+                <div class="trust-card">
+                    <p>"Decentralized Multi-Agent arrays scaling client operations autonomously."</p>
+                </div>
+                <div class="trust-card">
+                    <p>"Military-grade sandboxed infrastructure for secure enterprise LLM sharding."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2>QUESTIONS? <span class="highlight">WE'VE GOT ANSWERS.</span></h2>
+            </div>
+
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>What happens if I hit my tier limit?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>System access gracefully pauses. You can instantly upgrade via your billing portal or wait for the monthly cycle refresh. We ensure seamless transitions to keep your operations running smoothly.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Which underlying LLMs power Matrix?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our infrastructure dynamically routes across high-context flagship models to minimize latency and maximize task performance. This ensures you always get the best results for your specific use case.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I deploy AI agents on my own infrastructure?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, higher tiers offer custom on-premises isolation and dedicated infrastructure options. Enterprise plans include complete deployment flexibility tailored to your security and compliance needs.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is there a free trial?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Start with our Junior Coder tier at just $24.99/month to explore the full platform. No long-term commitment required—upgrade or downgrade at any time based on your evolving needs.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How secure is my data?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Military-grade encryption, zero-retention logging for premium tiers, and full compliance with GDPR, HIPAA, and SOC 2. Enterprise plans include additional audit trails and dedicated security reviews.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>READY TO BUILD YOUR DIGITAL EMPIRE?</h2>
+        <p>Join the future of AI-native businesses. Start now.</p>
+        <a href="https://thematrixofficial.gumroad.com/l/zctgvi?layout=profile" class="cta-section-btn">LAUNCH MATRIX →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="#services">Overview</a></li>
+                    <li><a href="#services">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Solutions</h3>
+                <ul>
+                    <li><a href="#">By Industry</a></li>
+                    <li><a href="#">Use Cases</a></li>
+                    <li><a href="#">AI Agents</a></li>
+                    <li><a href="#">Automation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">API Reference</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Stay Updated</h3>
+                <div class="footer-newsletter">
+                    <input type="email" placeholder="Enter your email">
+                    <button>→</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookies</a>
+            </div>
+            <p>Everything You Need Is Inside MATRIX</p>
+            <p style="margin-top: 1rem;">© 2026 MATRIX AI. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="Twitter">𝕏</a>
+                <a href="#" title="LinkedIn">in</a>
+                <a href="#" title="Discord">⚡</a>
+                <a href="#" title="YouTube">▶</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.querySelector('.faq-question').addEventListener('click', () => {
+                // Close other items
+                faqItems.forEach(i => {
+                    if (i !== item) i.classList.remove('active');
+                });
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const element = document.querySelector(href);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Pricing toggle (Monthly/Yearly) - Future functionality
+        const toggleSwitch = document.querySelector('.toggle-switch');
+        toggleSwitch.addEventListener('click', function() {
+            this.classList.toggle('yearly');
+            // Add functionality to adjust prices when toggled
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card, .pricing-card, .service-card, .trust-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
