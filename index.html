@@ -10,6 +10,219 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="src/styles.css">
   <script type="module" src="src/app.js" defer></script>
+  <style>
+    /* GitHub Marketplace Styles */
+    .marketplace-section {
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
+      border: 1px solid rgba(124, 92, 255, 0.15);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 4rem 0;
+    }
+
+    .marketplace-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .marketplace-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .marketplace-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .marketplace-subtext {
+      color: #666;
+      font-size: 0.95rem;
+      margin-top: 0.25rem;
+    }
+
+    .marketplace-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .marketplace-item {
+      background: white;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .marketplace-item:hover {
+      border-color: #7C5CFF;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .marketplace-item-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .marketplace-item-icon {
+      width: 40px;
+      height: 40px;
+      background: #f0f0f0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .marketplace-item-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0 0 0.25rem 0;
+      color: #222;
+    }
+
+    .marketplace-item-author {
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .marketplace-item-desc {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+      flex: 1;
+    }
+
+    .marketplace-item-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .marketplace-item-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .marketplace-item-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
+      color: white;
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 1rem;
+    }
+
+    .marketplace-item-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      border-top: 1px solid #f0f0f0;
+      padding-top: 1rem;
+    }
+
+    .marketplace-price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .marketplace-item-btn {
+      padding: 0.5rem 1rem;
+      background: #7C5CFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .marketplace-item-btn:hover {
+      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 92, 255, 0.3);
+    }
+
+    .marketplace-cta {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(124, 92, 255, 0.1), rgba(0, 212, 255, 0.05));
+      border-radius: 8px;
+    }
+
+    .marketplace-cta h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #222;
+    }
+
+    .marketplace-cta p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .marketplace-cta .btn {
+      display: inline-block;
+    }
+
+    @media (max-width: 768px) {
+      .marketplace-section {
+        padding: 1.5rem;
+      }
+
+      .marketplace-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .marketplace-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .marketplace-item-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .marketplace-item-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body class="theme-light">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,6 +245,7 @@
       <nav class="nav" role="navigation" aria-label="Main">
         <ul>
           <li><a href="#products">Products</a></li>
+          <li><a href="#marketplace">GitHub Extensions</a></li>
           <li><a href="#bundles">Bundles</a></li>
           <li><a href="#memberships">Memberships</a></li>
           <li><a href="#pricing">Pricing</a></li>
@@ -133,6 +347,159 @@
       <div class="grid-actions">
         <a class="btn btn-ghost" href="#bundles">Browse bundles</a>
         <a class="btn btn-primary" href="#cta">Get started</a>
+      </div>
+    </section>
+
+    <!-- GITHUB MARKETPLACE SECTION -->
+    <section id="marketplace" class="container" aria-labelledby="marketplace-title">
+      <div class="marketplace-section">
+        <div class="marketplace-header">
+          <div class="marketplace-icon">🔌</div>
+          <div>
+            <h2 id="marketplace-title">GitHub Marketplace Extensions</h2>
+            <p class="marketplace-subtext">Powerful GitHub Apps & Actions to integrate MATRIX with your dev workflow</p>
+          </div>
+        </div>
+
+        <div class="marketplace-grid">
+          <!-- GitHub App 1 -->
+          <div class="marketplace-item">
+            <div class="marketplace-item-header">
+              <div class="marketplace-item-icon">⚙️</div>
+              <div style="flex: 1;">
+                <h3 class="marketplace-item-title">MATRIX CI/CD Automation</h3>
+                <p class="marketplace-item-author">by MATRIX Team</p>
+              </div>
+            </div>
+            <div class="marketplace-item-badge">VERIFIED</div>
+            <p class="marketplace-item-desc">Automate your deployment pipeline with intelligent build testing and continuous analytics reporting.</p>
+            <div class="marketplace-item-meta">
+              <span>⭐ 1.2k</span>
+              <span>📥 8k+ installs</span>
+              <span>✓ Verified</span>
+            </div>
+            <div class="marketplace-item-footer">
+              <span class="marketplace-price">Free</span>
+              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-ci-cd')">Install App</button>
+            </div>
+          </div>
+
+          <!-- GitHub App 2 -->
+          <div class="marketplace-item">
+            <div class="marketplace-item-header">
+              <div class="marketplace-item-icon">📊</div>
+              <div style="flex: 1;">
+                <h3 class="marketplace-item-title">MATRIX Analytics Sync</h3>
+                <p class="marketplace-item-author">by MATRIX Team</p>
+              </div>
+            </div>
+            <div class="marketplace-item-badge">VERIFIED</div>
+            <p class="marketplace-item-desc">Auto-sync GitHub metrics to your MATRIX dashboard. Track PRs, issues, and performance in real-time.</p>
+            <div class="marketplace-item-meta">
+              <span>⭐ 847</span>
+              <span>📥 5.2k+ installs</span>
+              <span>✓ Verified</span>
+            </div>
+            <div class="marketplace-item-footer">
+              <span class="marketplace-price">Free</span>
+              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-analytics')">Install App</button>
+            </div>
+          </div>
+
+          <!-- GitHub Action 1 -->
+          <div class="marketplace-item">
+            <div class="marketplace-item-header">
+              <div class="marketplace-item-icon">🚀</div>
+              <div style="flex: 1;">
+                <h3 class="marketplace-item-title">Deploy with MATRIX</h3>
+                <p class="marketplace-item-author">by MATRIX Team</p>
+              </div>
+            </div>
+            <div class="marketplace-item-badge">ACTION</div>
+            <p class="marketplace-item-desc">One-click GitHub Action to deploy MATRIX templates and trigger smart funnels on every release.</p>
+            <div class="marketplace-item-meta">
+              <span>⭐ 634</span>
+              <span>📥 3.1k+ workflows</span>
+              <span>✓ Verified</span>
+            </div>
+            <div class="marketplace-item-footer">
+              <span class="marketplace-price">Free</span>
+              <button class="marketplace-item-btn" onclick="window.open('https://github.com/marketplace/actions/deploy-with-matrix')">View Action</button>
+            </div>
+          </div>
+
+          <!-- GitHub App 3 -->
+          <div class="marketplace-item">
+            <div class="marketplace-item-header">
+              <div class="marketplace-item-icon">🔐</div>
+              <div style="flex: 1;">
+                <h3 class="marketplace-item-title">MATRIX Security Insights</h3>
+                <p class="marketplace-item-author">by MATRIX Team</p>
+              </div>
+            </div>
+            <div class="marketplace-item-badge">VERIFIED</div>
+            <p class="marketplace-item-desc">Monitor dependencies, get smart security alerts, and auto-generate fix recommendations.</p>
+            <div class="marketplace-item-meta">
+              <span>⭐ 556</span>
+              <span>📥 2.8k+ installs</span>
+              <span>✓ Verified</span>
+            </div>
+            <div class="marketplace-item-footer">
+              <span class="marketplace-price">Free / $9/mo</span>
+              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-security')">Install App</button>
+            </div>
+          </div>
+
+          <!-- GitHub Action 2 -->
+          <div class="marketplace-item">
+            <div class="marketplace-item-header">
+              <div class="marketplace-item-icon">📈</div>
+              <div style="flex: 1;">
+                <h3 class="marketplace-item-title">MATRIX Performance Monitor</h3>
+                <p class="marketplace-item-author">by MATRIX Team</p>
+              </div>
+            </div>
+            <div class="marketplace-item-badge">ACTION</div>
+            <p class="marketplace-item-desc">GitHub Action that tracks performance metrics, compares build times, and alerts on regressions.</p>
+            <div class="marketplace-item-meta">
+              <span>⭐ 489</span>
+              <span>📥 2.3k+ workflows</span>
+              <span>✓ Verified</span>
+            </div>
+            <div class="marketplace-item-footer">
+              <span class="marketplace-price">Free</span>
+              <button class="marketplace-item-btn" onclick="window.open('https://github.com/marketplace/actions/matrix-perf-monitor')">View Action</button>
+            </div>
+          </div>
+
+          <!-- GitHub App 4 -->
+          <div class="marketplace-item">
+            <div class="marketplace-item-header">
+              <div class="marketplace-item-icon">💬</div>
+              <div style="flex: 1;">
+                <h3 class="marketplace-item-title">MATRIX Code Reviews</h3>
+                <p class="marketplace-item-author">by MATRIX Team</p>
+              </div>
+            </div>
+            <div class="marketplace-item-badge">VERIFIED</div>
+            <p class="marketplace-item-desc">AI-powered code review assistant that suggests improvements and flags security issues automatically.</p>
+            <div class="marketplace-item-meta">
+              <span>⭐ 712</span>
+              <span>📥 4.1k+ installs</span>
+              <span>✓ Verified</span>
+            </div>
+            <div class="marketplace-item-footer">
+              <span class="marketplace-price">Free / $19/mo</span>
+              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-reviews')">Install App</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="marketplace-cta">
+          <h3>More integrations coming soon</h3>
+          <p>Build custom MATRIX integrations or submit your GitHub App to our marketplace</p>
+          <a class="btn btn-primary" href="https://github.com/thematrixofficial/matrix-sdk">View SDK & Docs</a>
+        </div>
       </div>
     </section>
 
@@ -280,7 +647,7 @@
         </details>
         <details>
           <summary>Can I upgrade from a one-off product to a membership?</summary>
-          <p>Yes — reach out to support and we’ll credit you for the purchase when upgrading.</p>
+          <p>Yes — reach out to support and we'll credit you for the purchase when upgrading.</p>
         </details>
       </div>
     </section>
@@ -367,5 +734,10 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
