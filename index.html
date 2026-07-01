@@ -3,741 +3,659 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MATRIX Storefront — Premium Digital Products</title>
-  <meta name="description" content="MATRIX — Premium digital products, bundles, and memberships for creators and teams." />
+  <title>MATRIX — The Operating System for AI Agents & Digital Empires</title>
+  <meta name="description" content="MATRIX is the operating system for AI agents and digital empires. Enterprise-grade infrastructure for autonomous intelligence." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="src/styles.css">
-  <script type="module" src="src/app.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    /* GitHub Marketplace Styles */
-    .marketplace-section {
-      background: linear-gradient(135deg, rgba(124, 92, 255, 0.05) 0%, rgba(0, 212, 255, 0.05) 100%);
-      border: 1px solid rgba(124, 92, 255, 0.15);
-      border-radius: 12px;
-      padding: 2.5rem;
-      margin: 4rem 0;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .marketplace-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+    :root {
+      --primary-bg: #0a0e27;
+      --secondary-bg: #0f1229;
+      --accent-neon: #00ff00;
+      --accent-purple: #9d4edd;
+      --accent-cyan: #00d9ff;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b8d4;
+      --border-color: #1a1f3a;
+      --card-bg: #111627;
+      --tier-highlight: #9d4edd;
+      --nav-height: 80px;
     }
 
-    .marketplace-icon {
-      width: 48px;
-      height: 48px;
-      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
-      border-radius: 8px;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding-top: var(--nav-height);
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 14, 39, 0.98);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 2rem;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+      height: var(--nav-height);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--accent-neon);
+      text-transform: uppercase;
       flex-shrink: 0;
     }
 
-    .marketplace-header h2 {
-      margin: 0;
-      font-size: 1.5rem;
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      flex: 1;
+      justify-content: center;
     }
 
-    .marketplace-subtext {
-      color: #666;
-      font-size: 0.95rem;
-      margin-top: 0.25rem;
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
     }
 
-    .marketplace-grid {
+    nav a:hover {
+      color: var(--accent-neon);
+    }
+
+    .cta-nav {
+      background: var(--accent-neon);
+      color: var(--primary-bg);
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .cta-nav:hover {
+      background: #00dd00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 2rem 100px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(157, 78, 221, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(40px);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
     }
 
-    .marketplace-item {
-      background: white;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .highlight {
+      color: var(--accent-neon);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary {
+      background: var(--accent-neon);
+      color: var(--primary-bg);
+    }
+
+    .btn-primary:hover {
+      background: #00dd00;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid var(--accent-neon);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-neon);
+      color: var(--primary-bg);
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .pricing-header h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-header h2 .neon {
+      color: var(--accent-neon);
+    }
+
+    .pricing-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .pricing-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2.5rem;
+      position: relative;
+      transition: all 0.3s;
       display: flex;
       flex-direction: column;
     }
 
-    .marketplace-item:hover {
-      border-color: #7C5CFF;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      transform: translateY(-4px);
+    .pricing-card:hover {
+      border-color: var(--accent-purple);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(157, 78, 221, 0.2);
     }
 
-    .marketplace-item-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1rem;
+    .pricing-card.featured {
+      border-color: var(--accent-neon);
+      background: linear-gradient(135deg, rgba(0, 255, 0, 0.05) 0%, rgba(157, 78, 221, 0.05) 100%);
     }
 
-    .marketplace-item-icon {
-      width: 40px;
-      height: 40px;
-      background: #f0f0f0;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-    }
-
-    .marketplace-item-title {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin: 0 0 0.25rem 0;
-      color: #222;
-    }
-
-    .marketplace-item-author {
+    .pricing-card.featured::before {
+      content: '⭐ Featured';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-neon);
+      color: var(--primary-bg);
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
       font-size: 0.85rem;
-      color: #666;
-      margin: 0;
-    }
-
-    .marketplace-item-desc {
-      font-size: 0.95rem;
-      color: #444;
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      flex: 1;
-    }
-
-    .marketplace-item-meta {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      font-size: 0.85rem;
-      color: #666;
-    }
-
-    .marketplace-item-meta span {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .marketplace-item-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
-      color: white;
-      padding: 0.35rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      margin-bottom: 1rem;
-    }
-
-    .marketplace-item-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      border-top: 1px solid #f0f0f0;
-      padding-top: 1rem;
-    }
-
-    .marketplace-price {
       font-weight: 700;
-      font-size: 1.1rem;
-      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .marketplace-item-btn {
-      padding: 0.5rem 1rem;
-      background: #7C5CFF;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
       white-space: nowrap;
     }
 
-    .marketplace-item-btn:hover {
-      background: linear-gradient(135deg, #7C5CFF, #00D4FF);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(124, 92, 255, 0.3);
-    }
-
-    .marketplace-cta {
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, rgba(124, 92, 255, 0.1), rgba(0, 212, 255, 0.05));
-      border-radius: 8px;
-    }
-
-    .marketplace-cta h3 {
-      font-size: 1.3rem;
+    .pricing-tier-name {
+      font-size: 1.5rem;
+      font-weight: 800;
       margin-bottom: 0.5rem;
-      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    .marketplace-cta p {
-      color: #666;
+    .pricing-tier-name.featured {
+      color: var(--accent-neon);
+    }
+
+    .pricing-description {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
       margin-bottom: 1.5rem;
+      min-height: 40px;
     }
 
-    .marketplace-cta .btn {
-      display: inline-block;
+    .pricing-price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent-neon);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-price-period {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .pricing-features li {
+      padding: 0.75rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--accent-neon);
+      font-weight: bold;
+    }
+
+    .pricing-cta {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.95rem;
+    }
+
+    .pricing-cta-primary {
+      background: var(--accent-neon);
+      color: var(--primary-bg);
+    }
+
+    .pricing-cta-primary:hover {
+      background: #00dd00;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 255, 0, 0.3);
+    }
+
+    .pricing-cta-secondary {
+      background: transparent;
+      color: var(--accent-neon);
+      border: 2px solid var(--accent-neon);
+    }
+
+    .pricing-cta-secondary:hover {
+      background: var(--accent-neon);
+      color: var(--primary-bg);
+    }
+
+    /* Features Section */
+    .features-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .features-section h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .features-section h2 .neon {
+      color: var(--accent-neon);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-purple);
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent-neon);
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--secondary-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+    }
+
+    footer p {
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: var(--accent-neon);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #00dd00;
     }
 
     @media (max-width: 768px) {
-      .marketplace-section {
-        padding: 1.5rem;
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
       }
 
-      .marketplace-grid {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      nav ul {
+        gap: 1rem;
+        font-size: 0.8rem;
+      }
+
+      .pricing-header h2 {
+        font-size: 2rem;
+      }
+
+      .pricing-grid {
         grid-template-columns: 1fr;
       }
 
-      .marketplace-header {
+      .hero-buttons {
         flex-direction: column;
-        text-align: center;
       }
 
-      .marketplace-item-footer {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .marketplace-item-btn {
+      .btn {
         width: 100%;
+        justify-content: center;
       }
     }
   </style>
 </head>
-<body class="theme-light">
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <a class="brand" href="/" aria-label="MATRIX homepage">
-        <svg width="36" height="36" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-          <defs>
-            <linearGradient id="g" x1="0" x2="1">
-              <stop offset="0" stop-color="#7C5CFF" />
-              <stop offset="1" stop-color="#00D4FF" />
-            </linearGradient>
-          </defs>
-          <rect rx="20" width="100" height="100" fill="url(#g)" />
-          <path d="M28 68 L50 32 L72 68 Z" fill="rgba(255,255,255,0.92)" />
-        </svg>
-        <span class="brand-name">MATRIX</span>
-      </a>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">MATRIX</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#pricing" class="cta-nav">Get Started</a>
+  </nav>
 
-      <nav class="nav" role="navigation" aria-label="Main">
-        <ul>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#marketplace">GitHub Extensions</a></li>
-          <li><a href="#bundles">Bundles</a></li>
-          <li><a href="#memberships">Memberships</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </nav>
-
-      <div class="header-actions">
-        <button class="btn btn-ghost" aria-label="Sign in">Sign in</button>
-        <a class="btn btn-primary" href="#cta">Get started</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="main">
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1 id="hero-title">MATRIX — Digital products that amplify your impact</h1>
-          <p class="lead">Premium templates, toolkits, and memberships built for creators and teams who want predictable growth. Fast to adopt, beautiful to use, engineered for conversion.</p>
-
-          <div class="hero-ctas">
-            <a class="btn btn-primary btn-xl" href="#products">Explore products</a>
-            <a class="btn btn-ghost" href="#memberships">See memberships</a>
-          </div>
-
-          <ul class="hero-features" aria-hidden="true">
-            <li><strong>Fast integration</strong><span>— Install & ship in hours</span></li>
-            <li><strong>Proven templates</strong><span>— Conversion-first layouts</span></li>
-            <li><strong>Enterprise ready</strong><span>— SSO, billing, & support</span></li>
-          </ul>
-        </div>
-
-        <div class="hero-art" aria-hidden="true">
-          <div class="card-viewport glass">
-            <div class="product-preview">
-              <svg viewBox="0 0 600 360" class="mock-illustration" role="img" aria-label="Product preview">
-                <defs>
-                  <linearGradient id="mg" x1="0" x2="1">
-                    <stop offset="0" stop-color="#7C5CFF" stop-opacity="0.85" />
-                    <stop offset="1" stop-color="#00D4FF" stop-opacity="0.8" />
-                  </linearGradient>
-                </defs>
-                <rect rx="16" width="100%" height="100%" fill="#081025" />
-                <rect x="28" y="28" rx="10" width="544" height="304" fill="url(#mg)" opacity="0.12"></rect>
-                <g fill="#fff" opacity="0.95">
-                  <rect x="56" y="48" rx="6" width="488" height="28"></rect>
-                  <rect x="56" y="88" rx="6" width="360" height="18"></rect>
-                  <rect x="56" y="118" rx="6" width="520" height="10"></rect>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="trust-strip" aria-hidden="true">
-        <div class="container">
-          <ul class="trust-list">
-            <li>Trusted by modern creators</li>
-            <li><strong>120k+</strong> downloads</li>
-            <li><strong>4.9/5</strong> average rating</li>
-            <li>30-day money back guarantee</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOCIAL PROOF -->
-    <section class="social-proof container">
-      <h2 class="section-title">Featured in</h2>
-      <ul class="logos" aria-hidden="true">
-        <li><svg class="logo" viewBox="0 0 100 24"><text x="0" y="16" font-size="14" fill="#222">Product Hunt</text></svg></li>
-        <li><svg class="logo" viewBox="0 0 100 24"><text x="0" y="16" font-size="14" fill="#222">TechCrunch</text></svg></li>
-        <li><svg class="logo" viewBox="0 0 100 24"><text x="0" y="16" font-size="14" fill="#222">Indie</text></svg></li>
-        <li><svg class="logo" viewBox="0 0 100 24"><text x="0" y="16" font-size="14" fill="#222">Creator Weekly</text></svg></li>
-      </ul>
-    </section>
-
-    <!-- FEATURED PRODUCTS -->
-    <section id="products" class="products container" aria-labelledby="products-title">
-      <h2 id="products-title" class="section-title">Featured products</h2>
-      <p class="section-lead">Hand-picked solutions organized across a clear value ladder so you can pick the right fit.</p>
-
-      <div class="filters">
-        <label class="sr-only" for="filter-select">Filter by category</label>
-        <select id="filter-select" aria-label="Filter products by category">
-          <option value="all">All categories</option>
-          <option value="analytics">Analytics</option>
-          <option value="growth">Growth</option>
-          <option value="design">Design</option>
-          <option value="devtools">Dev tools</option>
-        </select>
-      </div>
-
-      <div id="product-grid" class="grid" role="list"></div>
-
-      <div class="grid-actions">
-        <a class="btn btn-ghost" href="#bundles">Browse bundles</a>
-        <a class="btn btn-primary" href="#cta">Get started</a>
-      </div>
-    </section>
-
-    <!-- GITHUB MARKETPLACE SECTION -->
-    <section id="marketplace" class="container" aria-labelledby="marketplace-title">
-      <div class="marketplace-section">
-        <div class="marketplace-header">
-          <div class="marketplace-icon">🔌</div>
-          <div>
-            <h2 id="marketplace-title">GitHub Marketplace Extensions</h2>
-            <p class="marketplace-subtext">Powerful GitHub Apps & Actions to integrate MATRIX with your dev workflow</p>
-          </div>
-        </div>
-
-        <div class="marketplace-grid">
-          <!-- GitHub App 1 -->
-          <div class="marketplace-item">
-            <div class="marketplace-item-header">
-              <div class="marketplace-item-icon">⚙️</div>
-              <div style="flex: 1;">
-                <h3 class="marketplace-item-title">MATRIX CI/CD Automation</h3>
-                <p class="marketplace-item-author">by MATRIX Team</p>
-              </div>
-            </div>
-            <div class="marketplace-item-badge">VERIFIED</div>
-            <p class="marketplace-item-desc">Automate your deployment pipeline with intelligent build testing and continuous analytics reporting.</p>
-            <div class="marketplace-item-meta">
-              <span>⭐ 1.2k</span>
-              <span>📥 8k+ installs</span>
-              <span>✓ Verified</span>
-            </div>
-            <div class="marketplace-item-footer">
-              <span class="marketplace-price">Free</span>
-              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-ci-cd')">Install App</button>
-            </div>
-          </div>
-
-          <!-- GitHub App 2 -->
-          <div class="marketplace-item">
-            <div class="marketplace-item-header">
-              <div class="marketplace-item-icon">📊</div>
-              <div style="flex: 1;">
-                <h3 class="marketplace-item-title">MATRIX Analytics Sync</h3>
-                <p class="marketplace-item-author">by MATRIX Team</p>
-              </div>
-            </div>
-            <div class="marketplace-item-badge">VERIFIED</div>
-            <p class="marketplace-item-desc">Auto-sync GitHub metrics to your MATRIX dashboard. Track PRs, issues, and performance in real-time.</p>
-            <div class="marketplace-item-meta">
-              <span>⭐ 847</span>
-              <span>📥 5.2k+ installs</span>
-              <span>✓ Verified</span>
-            </div>
-            <div class="marketplace-item-footer">
-              <span class="marketplace-price">Free</span>
-              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-analytics')">Install App</button>
-            </div>
-          </div>
-
-          <!-- GitHub Action 1 -->
-          <div class="marketplace-item">
-            <div class="marketplace-item-header">
-              <div class="marketplace-item-icon">🚀</div>
-              <div style="flex: 1;">
-                <h3 class="marketplace-item-title">Deploy with MATRIX</h3>
-                <p class="marketplace-item-author">by MATRIX Team</p>
-              </div>
-            </div>
-            <div class="marketplace-item-badge">ACTION</div>
-            <p class="marketplace-item-desc">One-click GitHub Action to deploy MATRIX templates and trigger smart funnels on every release.</p>
-            <div class="marketplace-item-meta">
-              <span>⭐ 634</span>
-              <span>📥 3.1k+ workflows</span>
-              <span>✓ Verified</span>
-            </div>
-            <div class="marketplace-item-footer">
-              <span class="marketplace-price">Free</span>
-              <button class="marketplace-item-btn" onclick="window.open('https://github.com/marketplace/actions/deploy-with-matrix')">View Action</button>
-            </div>
-          </div>
-
-          <!-- GitHub App 3 -->
-          <div class="marketplace-item">
-            <div class="marketplace-item-header">
-              <div class="marketplace-item-icon">🔐</div>
-              <div style="flex: 1;">
-                <h3 class="marketplace-item-title">MATRIX Security Insights</h3>
-                <p class="marketplace-item-author">by MATRIX Team</p>
-              </div>
-            </div>
-            <div class="marketplace-item-badge">VERIFIED</div>
-            <p class="marketplace-item-desc">Monitor dependencies, get smart security alerts, and auto-generate fix recommendations.</p>
-            <div class="marketplace-item-meta">
-              <span>⭐ 556</span>
-              <span>📥 2.8k+ installs</span>
-              <span>✓ Verified</span>
-            </div>
-            <div class="marketplace-item-footer">
-              <span class="marketplace-price">Free / $9/mo</span>
-              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-security')">Install App</button>
-            </div>
-          </div>
-
-          <!-- GitHub Action 2 -->
-          <div class="marketplace-item">
-            <div class="marketplace-item-header">
-              <div class="marketplace-item-icon">📈</div>
-              <div style="flex: 1;">
-                <h3 class="marketplace-item-title">MATRIX Performance Monitor</h3>
-                <p class="marketplace-item-author">by MATRIX Team</p>
-              </div>
-            </div>
-            <div class="marketplace-item-badge">ACTION</div>
-            <p class="marketplace-item-desc">GitHub Action that tracks performance metrics, compares build times, and alerts on regressions.</p>
-            <div class="marketplace-item-meta">
-              <span>⭐ 489</span>
-              <span>📥 2.3k+ workflows</span>
-              <span>✓ Verified</span>
-            </div>
-            <div class="marketplace-item-footer">
-              <span class="marketplace-price">Free</span>
-              <button class="marketplace-item-btn" onclick="window.open('https://github.com/marketplace/actions/matrix-perf-monitor')">View Action</button>
-            </div>
-          </div>
-
-          <!-- GitHub App 4 -->
-          <div class="marketplace-item">
-            <div class="marketplace-item-header">
-              <div class="marketplace-item-icon">💬</div>
-              <div style="flex: 1;">
-                <h3 class="marketplace-item-title">MATRIX Code Reviews</h3>
-                <p class="marketplace-item-author">by MATRIX Team</p>
-              </div>
-            </div>
-            <div class="marketplace-item-badge">VERIFIED</div>
-            <p class="marketplace-item-desc">AI-powered code review assistant that suggests improvements and flags security issues automatically.</p>
-            <div class="marketplace-item-meta">
-              <span>⭐ 712</span>
-              <span>📥 4.1k+ installs</span>
-              <span>✓ Verified</span>
-            </div>
-            <div class="marketplace-item-footer">
-              <span class="marketplace-price">Free / $19/mo</span>
-              <button class="marketplace-item-btn" onclick="window.open('https://github.com/apps/matrix-reviews')">Install App</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="marketplace-cta">
-          <h3>More integrations coming soon</h3>
-          <p>Build custom MATRIX integrations or submit your GitHub App to our marketplace</p>
-          <a class="btn btn-primary" href="https://github.com/thematrixofficial/matrix-sdk">View SDK & Docs</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUCT CATEGORIES -->
-    <section class="categories container" aria-labelledby="categories-title">
-      <h2 id="categories-title" class="section-title">Product categories</h2>
-      <ul class="category-grid" role="list">
-        <li class="category-card glass">
-          <h3>Growth</h3>
-          <p>Templates and scripts to increase conversions and retention.</p>
-        </li>
-        <li class="category-card glass">
-          <h3>Design</h3>
-          <p>High-converting UI kits, icons, and motion libraries.</p>
-        </li>
-        <li class="category-card glass">
-          <h3>Analytics</h3>
-          <p>Dashboards and funnels built for clarity and action.</p>
-        </li>
-        <li class="category-card glass">
-          <h3>Dev tools</h3>
-          <p>Automations, scripts, and CI helpers for fast shipping.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- BUNDLES -->
-    <section id="bundles" class="bundles container" aria-labelledby="bundles-title">
-      <h2 id="bundles-title" class="section-title">Bundles</h2>
-      <p class="section-lead">Save on curated collections designed to take you from launch to scale.</p>
-
-      <div class="bundle-grid" role="list">
-        <article class="bundle card glass" role="listitem">
-          <h3>Launch Pack</h3>
-          <p class="muted">Starter templates + analytics</p>
-          <ul class="bundle-items">
-            <li>Landing template</li>
-            <li>Onboarding checklist</li>
-            <li>Basic analytics dashboard</li>
-          </ul>
-          <div class="bundle-meta">
-            <div class="price">$79</div>
-            <a class="btn btn-primary" href="#cta">Buy bundle</a>
-          </div>
-        </article>
-
-        <article class="bundle card glass" role="listitem">
-          <h3>Growth Kit</h3>
-          <p class="muted">Templates, scrapers, and email sequences</p>
-          <ul class="bundle-items">
-            <li>Email sequences</li>
-            <li>Referral widgets</li>
-            <li>A/B test templates</li>
-          </ul>
-          <div class="bundle-meta">
-            <div class="price">$199</div>
-            <a class="btn btn-primary" href="#cta">Buy bundle</a>
-          </div>
-        </article>
-
-        <article class="bundle card glass" role="listitem">
-          <h3>Enterprise Suite</h3>
-          <p class="muted">Everything in Growth + SSO &amp; Priority Support</p>
-          <ul class="bundle-items">
-            <li>Full product set</li>
-            <li>SSO integration</li>
-            <li>Dedicated onboarding</li>
-          </ul>
-          <div class="bundle-meta">
-            <div class="price">Custom</div>
-            <a class="btn btn-primary" href="#contact">Contact sales</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- MEMBERSHIPS -->
-    <section id="memberships" class="memberships container" aria-labelledby="memberships-title">
-      <h2 id="memberships-title" class="section-title">Memberships</h2>
-      <p class="section-lead">Access our entire library, priority drops, and community support.</p>
-
-      <div class="membership-grid" role="list">
-        <article class="membership card glass">
-          <h3>Creator — $19/mo</h3>
-          <p>Monthly releases, community access, &amp; lite support.</p>
-          <ul>
-            <li>Access to all beginner products</li>
-            <li>Monthly workshops</li>
-            <li>Community Slack</li>
-          </ul>
-          <a class="btn btn-primary" href="#cta">Join Creator</a>
-        </article>
-
-        <article class="membership card glass recommended">
-          <h3>Pro — $49/mo</h3>
-          <p>Everything in Creator + professional templates &amp; private office hours.</p>
-          <ul>
-            <li>Pro templates</li>
-            <li>One 1:1 onboarding per quarter</li>
-            <li>Priority support</li>
-          </ul>
-          <a class="btn btn-primary" href="#cta">Join Pro</a>
-        </article>
-
-        <article class="membership card glass">
-          <h3>Enterprise</h3>
-          <p>Custom contracts, SSO, SLAs, and white-glove onboarding.</p>
-          <a class="btn btn-outline" href="#contact">Contact sales</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials container" aria-labelledby="testimonials-title">
-      <h2 id="testimonials-title" class="section-title">What customers say</h2>
-      <div class="testimonial-grid">
-        <blockquote class="testimonial card glass">
-          <p>"MATRIX templates saved us weeks of design time and increased signups by 32%. Beautifully built and easy to customize."</p>
-          <cite>— Alex Kim, Founder @ BrightByte</cite>
-        </blockquote>
-
-        <blockquote class="testimonial card glass">
-          <p>"The onboarding checklist and analytics dashboard let us iterate faster. Support was outstanding when we needed a quick integration."</p>
-          <cite>— Priya N., Head of Growth</cite>
-        </blockquote>
-
-        <blockquote class="testimonial card glass">
-          <p>"Professional, fast, and conversion-focused. The Pro membership pays for itself."</p>
-          <cite>— Miguel R., Product Lead</cite>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq container" aria-labelledby="faq-title">
-      <h2 id="faq-title" class="section-title">Frequently asked questions</h2>
-      <div class="faq-grid">
-        <details>
-          <summary>What is included with a product purchase?</summary>
-          <p>Most products include downloadable assets, install instructions, and a 30-day support window. Specific deliverables are listed on each product card.</p>
-        </details>
-        <details>
-          <summary>Do you offer refunds?</summary>
-          <p>Yes — 30-day money back guarantee on single product purchases. Contact support to request a refund.</p>
-        </details>
-        <details>
-          <summary>Can I upgrade from a one-off product to a membership?</summary>
-          <p>Yes — reach out to support and we'll credit you for the purchase when upgrading.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="pricing container" aria-labelledby="pricing-title">
-      <h2 id="pricing-title" class="section-title">Pricing</h2>
-      <p class="section-lead">Transparent pricing with options for individuals and teams.</p>
-
-      <div class="pricing-grid">
-        <div class="pricing-card card glass">
-          <h3>Free</h3>
-          <p class="price-figure">$0</p>
-          <ul>
-            <li>Starter assets</li>
-            <li>Community support</li>
-          </ul>
-          <a class="btn btn-outline" href="#products">Get free</a>
-        </div>
-
-        <div class="pricing-card card glass highlighted">
-          <h3>Pro</h3>
-          <p class="price-figure">$49 / month</p>
-          <ul>
-            <li>Full product library (individual)</li>
-            <li>Monthly workshops</li>
-            <li>Priority support</li>
-          </ul>
-          <a class="btn btn-primary" href="#cta">Start Pro</a>
-        </div>
-
-        <div class="pricing-card card glass">
-          <h3>Enterprise</h3>
-          <p class="price-figure">Custom</p>
-          <ul>
-            <li>SSO &amp; billing</li>
-            <li>Dedicated onboarding</li>
-            <li>Service SLA</li>
-          </ul>
-          <a class="btn btn-outline" href="#contact">Contact sales</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta" class="cta container" aria-labelledby="cta-title">
-      <h2 id="cta-title">Ready to ship faster with MATRIX?</h2>
-      <p class="section-lead">Start with a free product or choose a plan that fits your team. No lock-ins.</p>
-
-      <form class="cta-form" aria-label="Start a free trial">
-        <label for="email" class="sr-only">Email address</label>
-        <input id="email" name="email" type="email" placeholder="you@company.com" required>
-        <button class="btn btn-primary" type="submit">Start free</button>
-      </form>
-
-      <p class="muted small">No credit card required. Cancel any time.</p>
-    </section>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-grid">
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
       <div>
-        <a class="brand footer-brand" href="/">MATRIX</a>
-        <p class="muted">Premium templates, toolkits & memberships.</p>
-      </div>
-
-      <nav aria-label="Footer" class="footer-nav">
-        <ul>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#bundles">Bundles</a></li>
-          <li><a href="#memberships">Memberships</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-        </ul>
-      </nav>
-
-      <div class="footer-meta">
-        <form class="newsletter" aria-label="Subscribe to newsletter">
-          <label for="newsletter-email" class="sr-only">Email</label>
-          <input id="newsletter-email" type="email" placeholder="Subscribe" />
-          <button class="btn btn-primary" type="submit">Subscribe</button>
-        </form>
-
-        <p class="muted small">© <span id="year"></span> MATRIX. All rights reserved.</p>
+        <h1>The <span class="highlight">Operating System</span> for AI Agents & Digital Empires</h1>
+        <p>Enterprise-grade infrastructure for autonomous intelligence. Scale your digital operations with MATRIX — the platform that powers the future of AI.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-primary">Start Free Trial</button>
+          <button class="btn btn-secondary">Watch Demo</button>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing">
+    <div class="pricing-header">
+      <h2>Simple, Transparent <span class="neon">Pricing</span></h2>
+      <p>Choose the perfect plan to power your AI agents and digital empire. All plans include core features with 24/7 support.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <!-- Team Lead -->
+      <div class="pricing-card">
+        <div class="pricing-tier-name">Team Lead</div>
+        <p class="pricing-description">Collaboration tier</p>
+        <div class="pricing-price">$249.99</div>
+        <div class="pricing-price-period">/month</div>
+        <ul class="pricing-features">
+          <li>Up to 5 AI agents</li>
+          <li>Team collaboration tools</li>
+          <li>Basic analytics</li>
+          <li>Community support</li>
+          <li>Monthly updates</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-secondary">Learn More</button>
+      </div>
+
+      <!-- Architect -->
+      <div class="pricing-card featured">
+        <div class="pricing-tier-name featured">Architect</div>
+        <p class="pricing-description">Enterprise solutions</p>
+        <div class="pricing-price">$499.99</div>
+        <div class="pricing-price-period">/month</div>
+        <ul class="pricing-features">
+          <li>Up to 25 AI agents</li>
+          <li>Advanced integrations</li>
+          <li>Real-time monitoring</li>
+          <li>Priority support</li>
+          <li>Custom workflows</li>
+          <li>API access</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-primary">Get Started</button>
+      </div>
+
+      <!-- Principal -->
+      <div class="pricing-card">
+        <div class="pricing-tier-name">Principal</div>
+        <p class="pricing-description">Premium excellence</p>
+        <div class="pricing-price">$999.99</div>
+        <div class="pricing-price-period">/month</div>
+        <ul class="pricing-features">
+          <li>Up to 100 AI agents</li>
+          <li>Enterprise integrations</li>
+          <li>Advanced analytics</li>
+          <li>Dedicated support</li>
+          <li>Custom models</li>
+          <li>White-label options</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-secondary">Learn More</button>
+      </div>
+
+      <!-- Distinguished -->
+      <div class="pricing-card featured">
+        <div class="pricing-tier-name featured">Distinguished</div>
+        <p class="pricing-description">Ultimate power</p>
+        <div class="pricing-price">$2,499.99</div>
+        <div class="pricing-price-period">/month</div>
+        <ul class="pricing-features">
+          <li>Unlimited AI agents</li>
+          <li>Full API access</li>
+          <li>Custom infrastructure</li>
+          <li>24/7 dedicated support</li>
+          <li>On-premise deployment</li>
+          <li>SLA guarantee (99.99%)</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-primary">Get Started</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card featured">
+        <div class="pricing-tier-name featured">Enterprise</div>
+        <p class="pricing-description">Unlimited scale</p>
+        <div class="pricing-price">$4,999.99</div>
+        <div class="pricing-price-period">/month</div>
+        <ul class="pricing-features">
+          <li>Unlimited everything</li>
+          <li>Private infrastructure</li>
+          <li>Custom development</li>
+          <li>Executive support team</li>
+          <li>Multi-region deployment</li>
+          <li>Security compliance (SOC 2)</li>
+        </ul>
+        <button class="pricing-cta pricing-cta-primary">Contact Sales</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section" id="features">
+    <h2>Why Choose <span class="neon">MATRIX</span></h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI-Powered</h3>
+        <p>Harness the power of autonomous agents to automate complex workflows and scale your operations infinitely.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Lightning Fast</h3>
+        <p>Sub-millisecond response times and optimized performance for real-time agent operations and decision-making.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Enterprise Security</h3>
+        <p>Military-grade encryption, compliance certifications, and zero-trust architecture for complete data protection.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Advanced Analytics</h3>
+        <p>Real-time insights, detailed metrics, and predictive analytics to optimize your agent performance continuously.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>Global Infrastructure</h3>
+        <p>Deploy across multiple regions with automatic failover, load balancing, and edge computing capabilities.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>Scale Instantly</h3>
+        <p>From one agent to millions of concurrent operations. Auto-scaling ensures you never hit capacity limits.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 MATRIX. All rights reserved.</p>
+    <p>
+      <a href="#privacy">Privacy Policy</a> | 
+      <a href="#terms">Terms of Service</a> | 
+      <a href="#contact">Contact Us</a>
+    </p>
   </footer>
 
   <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
   </script>
 </body>
 </html>
