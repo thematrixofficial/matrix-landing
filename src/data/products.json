@@ -1,0 +1,68 @@
+[
+  {
+    "id": "p-free-01",
+    "name": "Starter Landing Kit",
+    "category": "growth",
+    "tier": "Free",
+    "price": 0,
+    "price_display": "Free",
+    "description": "A conversion-focused landing page template with install instructions.",
+    "benefits": ["Lead-optimized layout","Responsive & accessible","Quick install guide"],
+    "deliverables": ["HTML template","Assets pack","Docs"]
+  },
+  {
+    "id": "p-begin-01",
+    "name": "Onboarding Checklist",
+    "category": "growth",
+    "tier": "Beginner",
+    "price": 29,
+    "price_display": "$29",
+    "description": "A pragmatic onboarding checklist to increase activation.",
+    "benefits": ["Step-by-step tasks","Email templates","In-app prompts"],
+    "deliverables": ["Checklist","Email sequences","Integration guide"]
+  },
+  {
+    "id": "p-pro-01",
+    "name": "Pro UI Kit",
+    "category": "design",
+    "tier": "Professional",
+    "price": 99,
+    "price_display": "$99",
+    "description": "Premium UI components and motion patterns built for conversions.",
+    "benefits": ["Design system files","Figma & code tokens","Motion presets"],
+    "deliverables": ["Figma source","React components","Docs"]
+  },
+  {
+    "id": "p-prem-01",
+    "name": "Growth Automation Suite",
+    "category": "devtools",
+    "tier": "Premium",
+    "price": 249,
+    "price_display": "$249",
+    "description": "Automations and scripts to scale user acquisition and referral loops.",
+    "benefits": ["Pre-built automations","A/B test harness","Email flows"],
+    "deliverables": ["Scripts","Playbooks","Support"]
+  },
+  {
+    "id": "p-ent-01",
+    "name": "Enterprise Integration",
+    "category": "devtools",
+    "tier": "Enterprise",
+    "price": null,
+    "price_display": "Custom",
+    "description": "SSO, dedicated onboarding, and priority support for teams.",
+    "benefits": ["SSO & SAML","Dedicated onboarding","SLA & support"],
+    "deliverables": ["Integration guide","Onboarding plan","Dedicated support"]
+  },
+  {
+    "id": "p-pro-02",
+    "name": "Analytics Dashboard",
+    "category": "analytics",
+    "tier": "Professional",
+    "price": 149,
+    "price_display": "$149",
+    "description": "Actionable dashboards and funnel templates for growth teams.",
+    "benefits": ["Pre-built funnels","KPI widgets","Exportable reports"],
+    "deliverables": ["Dashboard","Sample data","Docs"]
+  }
+]
